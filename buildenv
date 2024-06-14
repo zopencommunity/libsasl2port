@@ -1,0 +1,45 @@
+# Update bump details accordingly. Use bump check to confirm.
+# bump: libsasl2-version /LIBSASL2_VERSION="(.*)"/ https://github.com/cyrusimap/cyrus-sasl.git|semver:*
+LIBSASL2_VERSION="2.1.28" # Specify a stable release
+# export ZOPEN_STABLE_TAG="v${LIBSASL2_VERSION}"
+export ZOPEN_STABLE_URL="https://github.com/cyrusimap/cyrus-sasl.git"
+export ZOPEN_STABLE_DEPS="make automake autoconf perl m4 sed coreutils bash openssl zoslib libtool gettext tar zlib"
+export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_RUNTIME_DEPS="bash"
+export ZOPEN_CATEGORIES="security"
+export ZOPEN_BOOTSTRAP="./autogen.sh"
+export ZOPEN_COMP="clang"
+
+zopen_check_results()
+{
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  # Echo the following information to gauge build health
+  echo "actualFailures:0"
+  echo "totalTests:1"
+  echo "expectedFailures:0"
+  echo "expectedTotalTests:1"
+}
+
+zopen_append_to_env()
+{
+
+cat <<ZZ
+if [ ! -z "\$ZOPEN_IN_ZOPEN_BUILD" ]; then 
+export ZOPEN_EXTRA_CFLAGS="\${ZOPEN_EXTRA_CFLAGS} -I\$PWD/include" 
+export ZOPEN_EXTRA_CXXFLAGS="\${ZOPEN_EXTRA_CXXFLAGS} -I\$PWD/include" 
+export ZOPEN_EXTRA_LDFLAGS="\${ZOPEN_EXTRA_LDFLAGS} -L\$PWD/lib" 
+export ZOPEN_EXTRA_LIBS="\${ZOPEN_EXTRA_LIBS} -lsasl2"
+fi
+ZZ
+
+}
+
+zopen_get_version()
+{
+  # Modify to echo the version of your tool/library
+  # Rather than hardcoding the version, obtain the version by running the tool/library
+  echo "${LIBSASL2_VERSION}"
+}

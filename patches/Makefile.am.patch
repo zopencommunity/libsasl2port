@@ -1,0 +1,17 @@
+diff --git a/Makefile.am b/Makefile.am
+index 937442b4..e3b5405e 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -64,8 +64,11 @@ INSTALLOSX = install-exec-local-osx
+ else 
+ INSTALLOSX = 
+ endif
+-
++if MVS
++SUBDIRS=include sasldb common plugins lib utils $(PWC) $(SAM) $(SAD) tests
++else
+ SUBDIRS=include sasldb common lib plugins utils $(PWC) $(SAM) $(SAD) tests
++endif
+ EXTRA_DIST=config doc docsrc win32 mac dlcompat-20010505 NTMakefile \
+     README.md README.ldapdb INSTALL.TXT libsasl2.pc.in
+ 

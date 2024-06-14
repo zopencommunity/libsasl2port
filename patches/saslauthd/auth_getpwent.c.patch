@@ -1,0 +1,21 @@
+diff --git a/saslauthd/auth_getpwent.c b/saslauthd/auth_getpwent.c
+index f6782933..a6d12b93 100644
+--- a/saslauthd/auth_getpwent.c
++++ b/saslauthd/auth_getpwent.c
+@@ -94,7 +94,7 @@ auth_getpwent (
+ 	    RETURN("NO Invalid username");
+ 	}
+     }
+-
++#ifndef __MVS__
+     crpt_passwd = crypt(password, pw->pw_passwd);
+     if (!crpt_passwd || strcmp(pw->pw_passwd, (const char *)crpt_passwd)) {
+ 	if (flags & VERBOSE) {
+@@ -102,6 +102,7 @@ auth_getpwent (
+ 	}
+ 	RETURN("NO Incorrect password");
+     }
++#endif
+ 
+     if (flags & VERBOSE) {
+ 	syslog(LOG_DEBUG, "DEBUG: auth_getpwent: OK: %s", login);
