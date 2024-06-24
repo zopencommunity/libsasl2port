@@ -1,5 +1,5 @@
 diff --git a/lib/Makefile.am b/lib/Makefile.am
-index 8e614605..a99c2c74 100644
+index 8e614605..f14e4974 100644
 --- a/lib/Makefile.am
 +++ b/lib/Makefile.am
 @@ -99,7 +99,11 @@ endif
@@ -14,3 +14,13 @@ index 8e614605..a99c2c74 100644
  	@for i in ./libsasl2.la ../common/libplugin_common.la ../sasldb/libsasldb.la ../plugins/lib*.la; do \
  	if test ! -f $$i; then continue; fi; . $$i; \
  	for j in $$dependency_libs foo; do \
+@@ -119,5 +123,9 @@ libsasl2.a: libsasl2.la $(SASL_STATIC_OBJS)
+ $(SASL_STATIC_SRCS): linksrcs
+ 
+ linksrcs:
++if MVS
++	-ln -f -s $(SASL_STATIC_SRCS) .
++else
+ 	-ln -s $(SASL_STATIC_SRCS) .
++endif
+ 

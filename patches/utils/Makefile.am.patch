@@ -1,0 +1,17 @@
+diff --git a/utils/Makefile.am b/utils/Makefile.am
+index 5963aef4..239a1d9c 100644
+--- a/utils/Makefile.am
++++ b/utils/Makefile.am
+@@ -49,8 +49,11 @@ sbin_PROGRAMS = @SASL_DB_UTILS@ @SMTPTEST_PROGRAM@ pluginviewer
+ EXTRA_PROGRAMS = saslpasswd2 sasldblistusers2 testsuite testsuitestatic smtptest pluginviewer
+ 
+ noinst_PROGRAMS = dbconverter-2
+-
++if MVS
++man_MANS = $(SASL_DB_MANS) pluginviewer.8
++else
+ man_MANS = $(SASL_DB_MANS) saslpasswd2.8 pluginviewer.8
++endif
+ 
+ saslpasswd2_LDADD = ../sasldb/libsasldb.la $(all_sasl_libs)
+ saslpasswd2_SOURCES = saslpasswd.c
