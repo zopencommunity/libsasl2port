@@ -1,5 +1,33 @@
-[![Automatic version updates](https://github.com/ZOSOpenTools/libsasl2port/actions/workflows/bump.yml/badge.svg)](https://github.com/ZOSOpenTools/libsasl2port/actions/workflows/bump.yml)
+# Libsasl2
 
-# libsasl2
+A SASL library
 
-This is the Cyrus SASL API implementation. It can be used on the client or server side to provide authentication and authorization services. See RFC 4422 for more information.
+# Installation and Usage
+
+Use the zopen package manager ([QuickStart Guide](https://zopen.community/#/Guides/QuickStart)) to install:
+```bash
+zopen install libsasl2
+```
+
+# Building from Source
+
+1. Clone the repository:
+```bash
+git clone https://github.com/zopencommunity/libsasl2port.git
+cd libsasl2port
+```
+2. Build using zopen:
+```bash
+zopen build -vv
+```
+
+See the [zopen porting guide](https://zopen.community/#/Guides/Porting) for more details.
+
+# Documentation
+
+
+# Troubleshooting
+TBD
+
+# Contributing
+Contributions are welcome! Please follow the [zopen contribution guidelines](https://github.com/zopencommunity/meta/blob/main/CONTRIBUTING.md).
